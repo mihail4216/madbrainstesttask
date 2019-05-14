@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TestMadBrains</string>
+    <string name="label_all_repository">public repository</string>
+    <string name="label_favorites_repository">favorite repository</string>
+</resources>
