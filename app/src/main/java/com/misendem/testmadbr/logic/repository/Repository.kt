@@ -1,6 +1,7 @@
 package com.misendem.testmadbr.logic.repository
 
 import android.arch.persistence.room.EmptyResultSetException
+import android.util.Log
 import com.misendem.testmadbr.App
 import com.misendem.testmadbr.logic.model.GitHubCommitModel
 import com.misendem.testmadbr.logic.model.GitHubRepositoryJsonModel
@@ -16,7 +17,7 @@ class Repository {
 
     companion object {
         private val disposables = CompositeDisposable()
-        private var countRepositoryPack = 10
+         var countRepositoryPack = 10
         private var lastIdRepository = 0
         fun getAllFavoritesRepository(complete: (ArrayList<GitHubRepositoryModel>) -> Unit) {
             val flowable = App.instance.database.favoritesRepositoryDao().getAll()
@@ -83,7 +84,6 @@ class Repository {
         }
 
         fun loadPublicRepositoryById(complete: (GitHubRepositoryModel) -> Unit) {
-
             disposables.add(
                 App.instance.API.getPublicRepositoryByPage(lastIdRepository)
                     .subscribeOn(Schedulers.io())

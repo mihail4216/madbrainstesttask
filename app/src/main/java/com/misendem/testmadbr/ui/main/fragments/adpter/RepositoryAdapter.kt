@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.misendem.testmadbr.R
 import com.misendem.testmadbr.logic.model.GitHubRepositoryModel
+import com.misendem.testmadbr.logic.repository.Repository
 import com.misendem.testmadbr.ui.main.fragments.view.RepositoryViewHolder
 
 class RepositoryAdapter(val context: Context) : RecyclerView.Adapter<RepositoryViewHolder>() {
@@ -20,7 +21,7 @@ class RepositoryAdapter(val context: Context) : RecyclerView.Adapter<RepositoryV
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RepositoryViewHolder {
         val view = LayoutInflater.from(p0.context).inflate(R.layout.view_item_repository, p0, false)
-        return RepositoryViewHolder(view, onClickBntFavorite,onDeleteFavoriteRepository,onClickRepository)
+        return RepositoryViewHolder(view, onClickBntFavorite, onDeleteFavoriteRepository, onClickRepository)
     }
 
     override fun getItemCount(): Int {
@@ -29,7 +30,7 @@ class RepositoryAdapter(val context: Context) : RecyclerView.Adapter<RepositoryV
 
     override fun onBindViewHolder(p0: RepositoryViewHolder, p1: Int) {
         p0.onBind(arrayListRepository[p1])
-        if (p1 == arrayListRepository.size - 1)
+        if (p1 == arrayListRepository.size - 1 && p1 >= Repository.countRepositoryPack-1)
             onEndListRecyclerView(arrayListRepository[p1])
     }
 
