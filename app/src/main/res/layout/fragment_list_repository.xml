@@ -6,6 +6,8 @@
                 android:background="#fff">
     <ProgressBar
             android:id="@+id/_progressBar"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>
     <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/_refreshLayout"
