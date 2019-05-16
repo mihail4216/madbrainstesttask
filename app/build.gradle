@@ -63,9 +63,6 @@ dependencies {
     kapt 'android.arch.persistence.room:compiler:1.1.1'
     implementation "android.arch.persistence.room:rxjava2:1.1.1"
 
-    //paging
-    implementation "android.arch.paging:runtime:1.0.1"
-
     //RevealLayout
     implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
 
