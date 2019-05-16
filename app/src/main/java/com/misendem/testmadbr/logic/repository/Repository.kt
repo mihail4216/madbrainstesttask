@@ -16,6 +16,8 @@ class Repository {
 
     companion object {
         private val disposables = CompositeDisposable()
+        private var countRepositoryPack = 10
+        private var lastIdRepository = 0
         fun getAllFavoritesRepository(complete: (ArrayList<GitHubRepositoryModel>) -> Unit) {
             val flowable = App.instance.database.favoritesRepositoryDao().getAll()
             disposables.add(
@@ -66,11 +68,12 @@ class Repository {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ arrayGitHubRepositoryJson ->
-                        //arrayGitHubRepository
-//                        for (i in 0..15)
-                        for (repository in arrayGitHubRepositoryJson)
-//                            сразу же гружу инфу о репозитории тк не нашел нужных параметров в том ответе который мне пришел
-                            loadInfoRepository(repository) { repositoryModel ->
+                        // много слишком в одном паке
+                        //   for (repository in arrayGitHubRepositoryJson)
+                        lastIdRepository = arrayGitHubRepositoryJson[countRepositoryPack].id
+                        for (i in 0..countRepositoryPack)
+                        //  сразу же гружу инфу о репозитории тк не нашел нужных параметров в том ответе который мне пришел
+                            loadInfoRepository(arrayGitHubRepositoryJson[i]) { repositoryModel ->
                                 complete(repositoryModel)
                             }
                     }, {
@@ -79,16 +82,17 @@ class Repository {
             )
         }
 
-        fun loadPublicRepositoryById(id: Int, complete: (GitHubRepositoryModel) -> Unit) {
+        fun loadPublicRepositoryById(complete: (GitHubRepositoryModel) -> Unit) {
 
             disposables.add(
-                App.instance.API.getPublicRepositoryByPage(id)
+                App.instance.API.getPublicRepositoryByPage(lastIdRepository)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ arrayGitHubRepositoryJson ->
-                        //arrayGitHubRepository
-                        for (i in arrayGitHubRepositoryJson)
-                            loadInfoRepository(i) { repositoryModel ->
+                        //                        for (i in arrayGitHubRepositoryJson)
+                        lastIdRepository = arrayGitHubRepositoryJson[countRepositoryPack].id
+                        for (i in 0..countRepositoryPack)
+                            loadInfoRepository(arrayGitHubRepositoryJson[i]) { repositoryModel ->
                                 complete(repositoryModel)
                             }
                     }, {
@@ -133,7 +137,7 @@ class Repository {
             )
         }
 
-        fun dispose(){
+        fun dispose() {
             disposables.dispose()
         }
     }

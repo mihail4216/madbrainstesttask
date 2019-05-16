@@ -35,7 +35,7 @@ class ListAllRepositoryPresenter : MvpPresenter<ListAllRepositoryView>() {
     }
 
     fun addPackRepository(repository: GitHubRepositoryModel) {
-        Repository.loadPublicRepositoryById(repository.id) { modelGitHubRepository ->
+        Repository.loadPublicRepositoryById() { modelGitHubRepository ->
             loadCountCommits(modelGitHubRepository) {}
         }
     }
