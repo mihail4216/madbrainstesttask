@@ -66,5 +66,8 @@ dependencies {
     //paging
     implementation "android.arch.paging:runtime:1.0.1"
 
+    //RevealLayout
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
+
 
 }

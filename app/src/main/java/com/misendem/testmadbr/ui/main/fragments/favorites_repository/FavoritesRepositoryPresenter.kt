@@ -10,7 +10,6 @@ class FavoritesRepositoryPresenter : MvpPresenter<FavoritesRepositoryView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-
         loadFavoritesRepository()
     }
 
@@ -28,5 +27,6 @@ class FavoritesRepositoryPresenter : MvpPresenter<FavoritesRepositoryView>() {
 
     fun onDeleteFavoriteRepository(repositoryModel: GitHubRepositoryModel) {
         Repository.deleteFromDbFavoritesRepository(repositoryModel)
+        viewState.showMessageRemoveFromFavorite()
     }
 }

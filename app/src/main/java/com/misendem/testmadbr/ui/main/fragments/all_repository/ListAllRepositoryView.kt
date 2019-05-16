@@ -1,18 +1,19 @@
 package com.misendem.testmadbr.ui.main.fragments.all_repository
 
-import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
-import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy
+import com.arellomobile.mvp.viewstate.strategy.SkipStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import com.misendem.testmadbr.logic.model.GitHubRepositoryModel
+import com.misendem.testmadbr.ui.main.fragments.FragmentRepositoryView
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface ListAllRepositoryView : MvpView {
+interface ListAllRepositoryView : FragmentRepositoryView {
 
-    @StateStrategyType(AddToEndStrategy::class)
-    fun addRepositoryInList(it: GitHubRepositoryModel)
-
-    fun openInfoAboutRepository(repository: GitHubRepositoryModel)
-    fun clearListRepository()
     fun hideRefresh()
+
+    @StateStrategyType(SkipStrategy::class)
+    fun showMessageAddInFavorite()
+
+
+    fun showProgressLoading()
+    fun hideProgressLoading()
 }

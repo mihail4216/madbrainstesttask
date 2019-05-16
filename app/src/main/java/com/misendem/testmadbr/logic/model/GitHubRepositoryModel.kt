@@ -22,7 +22,7 @@ class GitHubRepositoryModel(
     val countFork: Int,
     @SerializedName("stargazers_count")
     val countStars: Int,
-    val countCommits: Int=0
+    var countCommits: Int=0
 
 //    val arrayListCommits: ArrayList<GitHubCommitModel>?
 ):Serializable{

@@ -67,8 +67,10 @@ class Repository {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ arrayGitHubRepositoryJson ->
                         //arrayGitHubRepository
-                        for (i in arrayGitHubRepositoryJson)
-                            loadInfoRepository(i) { repositoryModel ->
+//                        for (i in 0..15)
+                        for (repository in arrayGitHubRepositoryJson)
+//                            сразу же гружу инфу о репозитории тк не нашел нужных параметров в том ответе который мне пришел
+                            loadInfoRepository(repository) { repositoryModel ->
                                 complete(repositoryModel)
                             }
                     }, {
@@ -129,6 +131,10 @@ class Repository {
 
 
             )
+        }
+
+        fun dispose(){
+            disposables.dispose()
         }
     }
 

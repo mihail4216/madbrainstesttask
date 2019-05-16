@@ -1,6 +1,7 @@
 package com.misendem.testmadbr.ui.main.fragments.all_repository
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -50,7 +51,7 @@ class ListListAllRepositoryFragment : MvpAppCompatFragment(), ListAllRepositoryV
 
     private fun initUi(view: View) {
         view._listRepository.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        RepositoryAdapter().apply {
+        RepositoryAdapter(context!!).apply {
             onClickRepository = {
                 mPresenter.onClickRepository(it)
             }
@@ -60,6 +61,10 @@ class ListListAllRepositoryFragment : MvpAppCompatFragment(), ListAllRepositoryV
 
             onEndListRecyclerView = {
                 mPresenter.addPackRepository(it)
+            }
+
+            onAddFavoriteRepository = {
+                mPresenter.onClickBntFavorite(it)
             }
 
             view._listRepository.adapter = this
@@ -76,6 +81,19 @@ class ListListAllRepositoryFragment : MvpAppCompatFragment(), ListAllRepositoryV
         )
 
 
+    }
+
+    override fun showProgressLoading() {
+        _progressBar.visibility = View.VISIBLE
+    }
+
+    override fun hideProgressLoading() {
+        _progressBar.visibility = View.GONE
+
+    }
+
+    override fun showMessageAddInFavorite() {
+        Snackbar.make(_refreshLayout,"Added favorite",Snackbar.LENGTH_SHORT).show()
     }
 
 

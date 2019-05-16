@@ -11,6 +11,7 @@ interface RepositoryInfoView:MvpView {
     fun showInfoRepository(model: GitHubRepositoryModel)
     fun addCommit(commit: GitHubCommitModel)
     fun addAllCommit(commits: ArrayList<GitHubCommitModel>)
+    fun setCountCommits(count: Int)
 
 
 }

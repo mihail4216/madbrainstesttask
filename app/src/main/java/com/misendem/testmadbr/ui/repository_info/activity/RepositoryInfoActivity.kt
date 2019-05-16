@@ -1,5 +1,6 @@
 package com.misendem.testmadbr.ui.repository_info.activity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -25,6 +26,11 @@ class RepositoryInfoActivity : MvpAppCompatActivity(), RepositoryInfoView {
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    override fun setCountCommits(count: Int) {
+        _commitsRepository.text = "${getString(R.string.commits)} : $count"
+    }
+
     @InjectPresenter
     lateinit var mPresenter: RepositoryInfoPresenter
 
@@ -43,13 +49,14 @@ class RepositoryInfoActivity : MvpAppCompatActivity(), RepositoryInfoView {
         mPresenter.loadInfo(model)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun showInfoRepository(model: GitHubRepositoryModel) {
         _nameRepository.text = model.nameRepository
         _descriptionRepository.text = model.description
-        _starsRepository.text = "stars : ${model.countStars}"
-        _languageRepository.text = "language : ${model.language}"
-        _forkRepository.text = "fork : ${model.countFork}"
-        _commitsRepository.text = "commits : ${model.countCommits}"
+        _starsRepository.text = "${getString(R.string.stars)} : ${model.countStars}"
+        _languageRepository.text = "${getString(R.string.language)} : ${model.language}"
+        _forkRepository.text = "${getString(R.string.fork)} : ${model.countFork}"
+
         Glide
             .with(this)
             .load(model.user.imageUrlAuthor)

@@ -9,7 +9,7 @@ class CommitViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun onBind(commitModel: GitHubCommitModel) {
         itemView._author.text = "author : ${commitModel.commit.author.name}"
-        itemView._date.text = "author : ${commitModel.commit.author.date}"
+        itemView._date.text = "date : ${commitModel.commit.author.date}"
         itemView._message.text = "message : ${commitModel.commit.message}"
     }
 }

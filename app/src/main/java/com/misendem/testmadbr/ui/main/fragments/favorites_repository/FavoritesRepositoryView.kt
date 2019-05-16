@@ -1,17 +1,13 @@
 package com.misendem.testmadbr.ui.main.fragments.favorites_repository
 
-import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
-import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy
+import com.arellomobile.mvp.viewstate.strategy.SkipStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
-import com.misendem.testmadbr.logic.model.GitHubRepositoryModel
+import com.misendem.testmadbr.ui.main.fragments.FragmentRepositoryView
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface FavoritesRepositoryView:MvpView {
-    fun openInfoAboutRepository(model: GitHubRepositoryModel)
+interface FavoritesRepositoryView:FragmentRepositoryView {
 
-    @StateStrategyType(AddToEndStrategy::class)
-    fun addRepositoryInList(it: GitHubRepositoryModel)
-
-    fun clearListRepository()
+    @StateStrategyType(SkipStrategy::class)
+    fun showMessageRemoveFromFavorite()
 }

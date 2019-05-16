@@ -1,49 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:layout_marginVertical="4dp"
-              android:elevation="3dp"
-              android:layout_marginHorizontal="2dp"
-              android:background="#fff"
->
+<com.chauthai.swipereveallayout.SwipeRevealLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="4dp"
+        android:elevation="3dp"
+        android:layout_marginHorizontal="2dp"
+        android:background="#fff">
 
-    <TextView
-            android:id="@+id/_nameRepository"
-            android:layout_marginHorizontal="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:id="@+id/_descriptionRepository"
-            android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:id="@+id/_languageRepository"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/_descriptionRepository"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:id="@+id/_forkRepository"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:id="@+id/_starsRepository"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    <TextView
-            android:id="@+id/_commitsRepository"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
-    <ImageView
-            android:id="@+id/_btnAddFavorites"
-            android:layout_width="24dp" android:layout_height="24dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/ic_favorite_border_black_24dp"
-    />
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="#123">
+        <ImageView
+                android:id="@+id/_btnDelete"
+                android:layout_gravity="center_vertical"
+                android:paddingHorizontal="15dp"
+                android:src="@drawable/ic_delete_black_24dp"
+                android:textColor="#fff"
+                android:background="#f00"
+                android:layout_width="wrap_content" android:layout_height="match_parent"/>
 
-</LinearLayout>
+        <ImageView
+                android:layout_gravity="center_vertical"
+                android:id="@+id/_btnFavorite"
+                android:paddingHorizontal="15dp"
+                android:src="@drawable/ic_favorite_border_black_24dp"
+                android:textColor="#fff"
+                android:background="#0f0"
+                android:layout_width="wrap_content" android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:background="#fff"
+                  android:id="@+id/_container"
+    >
+
+        <TextView
+                android:id="@+id/_nameRepository"
+                style="@style/text_style"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/_descriptionRepository"
+                android:layout_marginTop="5dp"
+                android:textSize="18sp"
+                style="@style/text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/_languageRepository"
+                android:layout_marginTop="5dp"
+                android:textSize="16sp"
+                style="@style/text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/_forkRepository"
+                android:textSize="16sp"
+
+                style="@style/text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:textSize="16sp"
+
+                android:id="@+id/_starsRepository"
+                style="@style/text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:id="@+id/_commitsRepository"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                style="@style/text_style"
+                android:layout_height="wrap_content"/>
+
+
+        <ImageView
+                android:id="@+id/_btnAddFavorites"
+                android:layout_width="24dp" android:layout_height="24dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/ic_favorite_border_black_24dp"
+        />
+
+    </LinearLayout>
+</com.chauthai.swipereveallayout.SwipeRevealLayout>

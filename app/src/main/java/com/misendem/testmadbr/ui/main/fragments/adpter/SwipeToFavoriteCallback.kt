@@ -10,8 +10,8 @@ import android.support.v7.widget.helper.ItemTouchHelper
 import com.misendem.testmadbr.R
 
 
-class SwipeToDeleteCallback(adapter: RepositoryAdapter) :
-    ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT ) {
+class SwipeToFavoriteCallback(adapter: RepositoryAdapter) :
+    ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT ) {
 
     init {
 
@@ -26,7 +26,7 @@ class SwipeToDeleteCallback(adapter: RepositoryAdapter) :
 
     override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
         val position = p0.adapterPosition
-        mAdapter.deleteItem(position)
+        mAdapter.addFavorite(position)
     }
 
     override fun onChildDraw(

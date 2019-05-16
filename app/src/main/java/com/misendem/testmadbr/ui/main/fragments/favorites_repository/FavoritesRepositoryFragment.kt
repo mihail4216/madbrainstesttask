@@ -1,8 +1,8 @@
 package com.misendem.testmadbr.ui.main.fragments.favorites_repository
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.misendem.testmadbr.R
 import com.misendem.testmadbr.logic.model.GitHubRepositoryModel
 import com.misendem.testmadbr.ui.main.fragments.adpter.RepositoryAdapter
-import com.misendem.testmadbr.ui.main.fragments.adpter.SwipeToDeleteCallback
 import com.misendem.testmadbr.ui.repository_info.activity.RepositoryInfoActivity
 import kotlinx.android.synthetic.main.fragment_list_repository.*
 import kotlinx.android.synthetic.main.fragment_list_repository.view.*
@@ -28,6 +27,10 @@ class FavoritesRepositoryFragment : MvpAppCompatFragment(), FavoritesRepositoryV
 
     @InjectPresenter
     lateinit var mPresenter: FavoritesRepositoryPresenter
+
+    override fun showMessageRemoveFromFavorite() {
+        Snackbar.make(_refreshLayout,"Removed", Snackbar.LENGTH_SHORT).show()
+    }
 
     override fun clearListRepository() {
         (_listRepository.adapter as RepositoryAdapter).clearRepository()
@@ -49,7 +52,7 @@ class FavoritesRepositoryFragment : MvpAppCompatFragment(), FavoritesRepositoryV
 
     private fun initUi(view: View) {
         view._listRepository.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        RepositoryAdapter().apply {
+        RepositoryAdapter(context!!).apply {
             onClickRepository = {
                 mPresenter.onClickRepository(it)
             }
@@ -57,8 +60,9 @@ class FavoritesRepositoryFragment : MvpAppCompatFragment(), FavoritesRepositoryV
                 mPresenter.onDeleteFavoriteRepository(it)
             }
             view._listRepository.adapter = this
-            val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(this))
-            itemTouchHelper.attachToRecyclerView(view._listRepository)
+        }
+        view._refreshLayout.setOnRefreshListener {
+            view._refreshLayout.isRefreshing = false
         }
     }
 

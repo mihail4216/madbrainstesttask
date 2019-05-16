@@ -2,4 +2,9 @@
     <string name="app_name">TestMadBrains</string>
     <string name="label_all_repository">public repository</string>
     <string name="label_favorites_repository">favorite repository</string>
+
+    <string name="commits" translatable="false">commits</string>
+    <string name="stars" translatable="false">stars</string>
+    <string name="language" translatable="false">language</string>
+    <string name="fork" translatable="false">fork</string>
 </resources>
